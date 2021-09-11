@@ -1,0 +1,118 @@
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    hostname: piholedocker
+    environment:
+      TZ: 'Europe/Brussels'
+      PIHOLE_DNS_: 127.0.0.1;192.168.1.1      
+    volumes:
+      - '/home/depechie/pihole:/etc/pihole/'
+      - '/home/depechie/etc/dnsmasq.d/:/etc/dnsmasq.d/'
+    labels:
+      - 'wud.watch.digest=true'
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.3    
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    
+  whatsupdocker:
+    depends_on:
+      - pihole
+    container_name: wud
+    image: fmartinou/whats-up-docker:5.4.0
+    volumes:    
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - 'wud.tag.include=^\d+\.\d+\.\d+$$'
+      - 'wud.link.template=https://github.com/fmartinou/whats-up-docker/releases/tag/$${major}.$${minor}.$${patch}'
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.4    
+    dns: 10.0.0.3
+    ports:
+      - 3000:3000    
+    restart: unless-stopped      
+
+  calibre:
+    depends_on:
+      - pihole      
+    container_name: calibre
+    image: linuxserver/calibre:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Brussels
+    volumes:
+      - /home/depechie/calibre:/config
+    labels:
+      - 'wud.watch.digest=true'
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.5
+    dns: 10.0.0.3        
+    ports:
+      - 8082:8080
+      - 8084:8081
+    restart: unless-stopped
+    mem_limit: 14336m
+    cpus: 6    
+    
+  calibre-web:
+    depends_on:
+      - pihole
+      - calibre
+    container_name: calibre-web
+    image: linuxserver/calibre-web:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Brussels
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
+    volumes:
+      - /home/depechie/calibre/config:/config
+      - /home/depechie/calibre/books:/books
+    labels:
+      - 'wud.watch.digest=true'
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.6
+    dns: 10.0.0.3            
+    ports:
+      - 8083:8083
+    restart: unless-stopped
+    mem_limit: 14336m
+    cpus: 6
+    
+  portainer:
+    depends_on:
+      - pihole
+    container_name: portainer-ce
+    image: portainer/portainer-ce
+    volumes:
+      - "./portainer/data:/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.7
+    dns: 10.0.0.3
+    ports:
+      - 8001:8000
+      - 9001:9000    
+    restart: unless-stopped
+    
+networks:
+  backbone:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: backbone
+    ipam:
+      config:
+        - subnet: 10.0.0.0/27      
