@@ -51,7 +51,7 @@ services:
       - PGID=1000
       - TZ=Europe/Brussels
     volumes:
-      - /home/depechie/calibre:/config
+      - /home/depechie/calibre/config:/config
     labels:
       - 'wud.watch.digest=true'
     networks:
