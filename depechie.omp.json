@@ -1,0 +1,157 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "root",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#ffe9aa"
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#ffffff"
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#003544",
+          "background": "#0087D8",
+          "properties": {
+            "prefix": " \uE5FF ",
+            "style": "full",
+            "folder_separator_icon": "/"
+          }
+        },		
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#193549",
+          "background": "#95ffa4",
+          "properties": {
+            "template": "{{ .HEAD }}"
+          }
+        },
+        {
+          "type": "dotnet",
+          "style": "powerline",
+		  "powerline_symbol": "\uE0B0",
+		  "foreground": "#ffffff",
+          "background": "#0077c2",
+          "properties": {
+            "prefix": " \ue70c "
+          }
+        },
+        {
+          "type": "node",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#ffffff",
+          "background": "#689f63",
+          "properties": {
+            "prefix": " \uF898 ",
+            "display_version": true
+          }
+        },		
+        {
+          "type": "angular",
+          "style": "powerline",
+		  "powerline_symbol": "\uE0B0",
+          "foreground": "#ce092f",
+          "background": "#ffffff",
+          "properties": {
+            "prefix": " \uE753 "
+          }
+        },		
+        {
+          "type": "exit",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#ffffff",
+          "background": "#ff8080",
+          "properties": {
+            "template": "{{ .Text }}"
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "time",
+          "style": "powerline",
+          "invert_powerline": true,
+          "powerline_symbol": "\uE0B2",
+          "foreground": "#d6deeb",
+          "background": "#234d70",
+          "properties": {
+            "prefix": "<#fff> \uf64f </>"
+          }
+        },
+		{
+		  "type": "battery",
+		  "style": "powerline",
+		  "invert_powerline": true,
+		  "powerline_symbol": "\uE0B2",
+		  "foreground": "#193549",
+		  "background": "#ffeb3b",
+		  "background_templates": [
+			"{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+			"{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
+			"{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+		  ],
+		  "properties": {
+			"discharging_icon": "\uE231 ",
+			"charging_icon": "\uE234 ",
+			"charged_icon": "\uE22F ",
+			"postfix": "\uF295 ",
+			"template": "{{ if not .Error }}{{.Icon}}{{.Percentage}}{{ end }}"
+		  }
+		},
+		{
+		  "type": "wifi",
+		  "style": "powerline",
+		  "invert_powerline": true,
+		  "background": "#8822ee",
+		  "foreground": "#222222",
+		  "background_templates": [
+			"{{ if (lt .Signal 60) }}#DDDD11{{ else if (lt .Signal 90) }}#DD6611{{ else }}#11CC11{{ end }}"
+		  ],
+		  "powerline_symbol": "\uE0B2",
+		  "properties": {
+			"template": "\uFAA8 {{ .SSID }} {{ .Signal }}% {{ .ReceiveRate }}Mbps"
+		  }
+		}
+	  ]
+	},
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#21c7a8",
+          "properties": {
+            "prefix": "",
+            "postfix": "",
+            "text": ">"
+          }
+        }
+      ]
+    }	
+  ],
+  "final_space": true
+}
