@@ -107,6 +107,28 @@ services:
       - 8001:8000
       - 9001:9000    
     restart: unless-stopped
+
+  emby:
+    image: emby/embyserver
+    container_name: emby
+    network_mode: host # Enable DLNA and Wake-on-Lan
+    environment:
+      - UID=1000 # The UID to run emby as (default: 2)
+      - GID=1000 # The GID to run emby as (default 2)
+      - GIDLIST=44,107 # A comma-separated list of additional GIDs to run emby as (default: 2)
+    volumes:
+      - /home/depechie/emby/config:/config
+      - /home/depechie/emby/movies01:/data/movies01
+      - /home/depechie/emby/movies02:/data/movies02
+      - /home/depechie/emby/moviesarch01:/data/moviesarch01
+      - /home/depechie/emby/moviesarch02:/data/moviesarch02
+      - /home/depechie/emby/series01:/data/series01
+      - /home/depechie/emby/series02:/data/series02
+    ports:
+      - 8096:8096 # HTTP port
+    devices:
+      - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
+    restart: unless-stopped
     
 networks:
   backbone:
