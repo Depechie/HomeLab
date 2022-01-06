@@ -91,22 +91,22 @@ services:
     mem_limit: 14336m
     cpus: 6
     
-  portainer:
-    depends_on:
-      - pihole
-    container_name: portainer-ce
-    image: portainer/portainer-ce
-    volumes:
-      - "./portainer/data:/data"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.7
-    dns: 10.0.0.3
-    ports:
-      - 8001:8000
-      - 9001:9000    
-    restart: unless-stopped
+  # portainer:
+  #   depends_on:
+  #     - pihole
+  #   container_name: portainer-ce
+  #   image: portainer/portainer-ce
+  #   volumes:
+  #     - "./portainer/data:/data"
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
+  #   networks:
+  #     backbone:
+  #       ipv4_address: 10.0.0.7
+  #   dns: 10.0.0.3
+  #   ports:
+  #     - 8001:8000
+  #     - 9001:9000    
+  #   restart: unless-stopped
     
 networks:
   backbone:
