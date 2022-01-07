@@ -6,7 +6,6 @@ services:
     environment:
       TZ: 'Europe/Brussels'
       PIHOLE_DNS_: 192.168.1.1   
-      # PIHOLE_DNS_: 127.0.0.1;192.168.1.1      
     volumes:
       - '/home/depechie/pihole:/etc/pihole/'
       - '/home/depechie/etc/dnsmasq.d/:/etc/dnsmasq.d/'
@@ -91,45 +90,6 @@ services:
     restart: unless-stopped
     mem_limit: 14336m
     cpus: 6
-    
-  # portainer:
-  #   depends_on:
-  #     - pihole
-  #   container_name: portainer-ce
-  #   image: portainer/portainer-ce
-  #   volumes:
-  #     - "./portainer/data:/data"
-  #     - "/var/run/docker.sock:/var/run/docker.sock"
-  #   networks:
-  #     backbone:
-  #       ipv4_address: 10.0.0.7
-  #   dns: 10.0.0.3
-  #   ports:
-  #     - 8001:8000
-  #     - 9001:9000    
-  #   restart: unless-stopped
-
-  emby:
-    image: emby/embyserver
-    container_name: emby
-    network_mode: host # Enable DLNA and Wake-on-Lan
-    environment:
-      - UID=1000 # The UID to run emby as (default: 2)
-      - GID=1000 # The GID to run emby as (default 2)
-      - GIDLIST=44,107 # A comma-separated list of additional GIDs to run emby as (default: 2)
-    volumes:
-      - /home/depechie/emby/config:/config
-      - /home/depechie/emby/movies01:/data/movies01
-      - /home/depechie/emby/movies02:/data/movies02
-      - /home/depechie/emby/moviesarch01:/data/moviesarch01
-      - /home/depechie/emby/moviesarch02:/data/moviesarch02
-      - /home/depechie/emby/series01:/data/series01
-      - /home/depechie/emby/series02:/data/series02
-    ports:
-      - 8096:8096 # HTTP port
-    devices:
-      - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
-    restart: unless-stopped
     
 networks:
   backbone:
