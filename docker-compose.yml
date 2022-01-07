@@ -8,7 +8,7 @@ services:
       PIHOLE_DNS_: 192.168.1.1   
     volumes:
       - '/home/depechie/pihole:/etc/pihole/'
-      - '/home/depechie/etc/dnsmasq.d/:/etc/dnsmasq.d/'
+      # - '/home/depechie/etc/dnsmasq.d/:/etc/dnsmasq.d/'
     labels:
       - 'wud.watch.digest=true'
     networks:
