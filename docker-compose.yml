@@ -91,6 +91,30 @@ services:
     mem_limit: 14336m
     cpus: 6
 
+  handbrake:
+    depends_on:
+      - pihole
+    image: jlesage/handbrake
+    container_name: handbrake    
+    environment:
+      TZ: 'Europe/Brussels'
+    volumes:
+      - "/home/depechie/handbrake/config:/config"
+      - "/home/depechie/handbrake/watch:/watch"
+      - "/home/depechie/handbrake/output:/output"
+      - "/home/depechie/handbrake/storage:/storage"
+    labels:
+      - 'wud.watch.digest=true'
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.7
+    dns: 10.0.0.3
+    ports:
+      - 5800:5800    
+    restart: unless-stopped
+    mem_limit: 14336m
+    cpus: 6      
+
   emby:
     image: emby/embyserver
     container_name: emby
