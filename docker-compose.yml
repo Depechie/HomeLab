@@ -8,7 +8,7 @@ services:
       PIHOLE_DNS_: 192.168.1.1   
     volumes:
       - '/home/depechie/pihole:/etc/pihole/'
-      # - '/home/depechie/etc/dnsmasq.d/:/etc/dnsmasq.d/'
+      - '/home/depechie/pihole/etc/dnsmasq.d/:/etc/dnsmasq.d/'
     labels:
       - 'wud.watch.digest=true'
     networks:
@@ -90,6 +90,29 @@ services:
     restart: unless-stopped
     mem_limit: 14336m
     cpus: 6
+
+  emby:
+    image: emby/embyserver
+    container_name: emby
+    network_mode: host # Enable DLNA and Wake-on-Lan
+    environment:
+      - UID=1000 # The UID to run emby as (default: 2)
+      - GID=1000 # The GID to run emby as (default 2)
+      - GIDLIST=44,107 # A comma-separated list of additional GIDs to run emby as (default: 2)
+    volumes:
+      - /home/depechie/emby/config:/config
+      - /home/depechie/emby/movies01:/mnt/movies01
+      - /home/depechie/emby/movies02:/mnt/movies02
+      - /home/depechie/emby/moviesarch01:/mnt/moviesarch01
+      - /home/depechie/emby/moviesarch02:/mnt/moviesarch02
+      - /home/depechie/emby/series01:/mnt/series01
+      - /home/depechie/emby/series02:/mnt/series02
+      - /home/depechie/emby/kids01:/mnt/kids01
+    ports:
+      - 8096:8096 # HTTP port
+    devices:
+      - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
+    restart: unless-stopped
     
 networks:
   backbone:
@@ -98,4 +121,4 @@ networks:
       com.docker.network.bridge.name: backbone
     ipam:
       config:
-        - subnet: 10.0.0.0/27      
+        - subnet: 10.0.0.0/27              
