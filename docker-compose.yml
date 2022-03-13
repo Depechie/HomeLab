@@ -27,7 +27,7 @@ services:
     depends_on:
       - pihole
     container_name: wud
-    image: fmartinou/whats-up-docker:5.14.1
+    image: fmartinou/whats-up-docker:5.16.1
     volumes:    
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
@@ -145,4 +145,4 @@ networks:
       com.docker.network.bridge.name: backbone
     ipam:
       config:
-        - subnet: 10.0.0.0/27              
+        - subnet: 10.0.0.0/27
