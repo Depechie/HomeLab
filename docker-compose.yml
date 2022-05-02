@@ -27,8 +27,8 @@ services:
     depends_on:
       - pihole
     container_name: wud
-    image: fmartinou/whats-up-docker:5.16.2
-    volumes:    
+    image: fmartinou/whats-up-docker:5.17.0
+    volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
