@@ -125,14 +125,8 @@ services:
       - GIDLIST=44,107 # A comma-separated list of additional GIDs to run emby as (default: 2)
     volumes:
       - /home/depechie/emby/config:/config
-      - /home/depechie/emby/movies01:/mnt/movies01
-      - /home/depechie/emby/movies02:/mnt/movies02
-      - /home/depechie/emby/moviesarch01:/mnt/moviesarch01
-      - /home/depechie/emby/moviesarch02:/mnt/moviesarch02
-      - /home/depechie/emby/series01:/mnt/series01
-      - /home/depechie/emby/series02:/mnt/series02
-      - /home/depechie/emby/series03:/mnt/series03
-      - /home/depechie/emby/kids01:/mnt/kids01
+      - /home/depechie/emby/movies:/mnt/movies
+      - /home/depechie/emby/series:/mnt/series
     ports:
       - 8096:8096 # HTTP port
     devices:
