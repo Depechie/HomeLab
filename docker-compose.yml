@@ -127,6 +127,7 @@ services:
       - /home/depechie/emby/config:/config
       - /home/depechie/emby/movies:/mnt/movies
       - /home/depechie/emby/series:/mnt/series
+      - /home/depechie/emby/concerts:/mnt/concerts
     ports:
       - 8096:8096 # HTTP port
     devices:
