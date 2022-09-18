@@ -75,7 +75,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Brussels
-      - DOCKER_MODS=linuxserver/calibre-web:calibre
+      - DOCKER_MODS=linuxserver/mods:universal-calibre
     volumes:
       - /home/depechie/calibreweb/config:/config
       - /home/depechie/calibre/books:/books
