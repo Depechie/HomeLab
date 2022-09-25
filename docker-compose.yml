@@ -137,7 +137,7 @@ services:
 
   homeassistant:
     container_name: homeassistant_container
-    image: ghcr.io/home-assistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant:latest
     volumes:
       - /home/depechie/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
@@ -148,9 +148,10 @@ services:
     ports:
       - 8124:8123      
     labels:
-      - 'wud.tag.include=^\d+\.\d+\.\d+$$'      
+      - 'wud.tag.include=latest'
+      - 'wud.watch.digest=true'      
     restart: unless-stopped
-    privileged: true
+    # privileged: true
     
 networks:
   backbone:
