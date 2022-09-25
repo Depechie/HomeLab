@@ -134,6 +134,23 @@ services:
     devices:
       - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
     restart: unless-stopped
+
+  homeassistant:
+    container_name: homeassistant_container
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - /home/depechie/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.8
+    dns: 10.0.0.3        
+    ports:
+      - 8124:8123      
+    labels:
+      - 'wud.tag.include=^\d+\.\d+\.\d+$$'      
+    restart: unless-stopped
+    privileged: true
     
 networks:
   backbone:
