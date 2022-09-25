@@ -11,4 +11,4 @@ services:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'      
     restart: unless-stopped
     privileged: true
-    network_mode: host
+    # network_mode: host
