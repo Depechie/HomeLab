@@ -141,12 +141,12 @@ services:
     volumes:
       - /home/depechie/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.8
-    dns: 10.0.0.3        
-    ports:
-      - 8124:8123      
+    # networks:
+    #   backbone:
+    #     ipv4_address: 10.0.0.8
+    # dns: 10.0.0.3        
+    # ports:
+    #   - 8124:8123      
     labels:
       - 'wud.tag.include=latest'
       - 'wud.watch.digest=true'      
