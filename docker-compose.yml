@@ -141,6 +141,7 @@ services:
     volumes:
       - /home/depechie/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
+    network_mode: host
     # networks:
     #   backbone:
     #     ipv4_address: 10.0.0.8
