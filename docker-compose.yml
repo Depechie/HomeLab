@@ -38,14 +38,14 @@ services:
         ipv4_address: 10.0.0.4    
     dns: 10.0.0.3
     ports:
-      - 3000:3000    
+      - 3000:3000
     restart: unless-stopped      
 
   calibre:
     depends_on:
       - pihole      
     container_name: calibre
-    image: linuxserver/calibre:v6.5.0-ls181
+    image: linuxserver/calibre:v6.3.0-ls177
     environment:
       - PUID=1000
       - PGID=1000
