@@ -45,7 +45,7 @@ services:
     depends_on:
       - pihole      
     container_name: calibre
-    image: linuxserver/calibre:latest
+    image: linuxserver/calibre:v6.5.0-ls181
     environment:
       - PUID=1000
       - PGID=1000
