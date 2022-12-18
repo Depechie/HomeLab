@@ -49,8 +49,8 @@ services:
     security_opt:
       - seccomp:unconfined
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Europe/Brussels
     volumes:
       - /home/depechie/calibre:/config
@@ -65,32 +65,7 @@ services:
       - 8084:8081
     restart: unless-stopped
     mem_limit: 14336m
-    cpus: 6
-
-  calibre2:
-    depends_on:
-      - pihole      
-    container_name: calibre_test
-    image: linuxserver/calibre:latest
-    security_opt:
-      - seccomp:unconfined
-    environment:
-      # - PUID=1000
-      # - PGID=1000
-      - TZ=Europe/Brussels
-    # volumes:
-    #   - /home/depechie/calibre:/config
-    labels:
-      - 'wud.watch.digest=true'
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.20
-    dns: 10.0.0.3
-    ports:
-      - 8085:8080
-    restart: unless-stopped
-    mem_limit: 14336m
-    cpus: 6    
+    cpus: 6  
     
   calibre-web:
     depends_on:
