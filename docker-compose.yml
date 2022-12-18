@@ -49,11 +49,11 @@ services:
     # security_opt:
     #   - seccomp:unconfined
     environment:
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Brussels
-    # volumes:
-    #   - /home/depechie/calibre:/config
+    volumes:
+      - /home/depechie/calibre:/config
     labels:
       - 'wud.watch.digest=true'
     networks:
