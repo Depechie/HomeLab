@@ -56,10 +56,10 @@ services:
       - /home/depechie/calibre:/config
     labels:
       - 'wud.watch.digest=true'
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.5
-    dns: 10.0.0.3        
+    # networks:
+    #   backbone:
+    #     ipv4_address: 10.0.0.5
+    # dns: 10.0.0.3
     ports:
       - 8082:8080
       - 8084:8081
