@@ -45,7 +45,7 @@ services:
     depends_on:
       - pihole      
     container_name: calibre
-    image: linuxserver/calibre:v6.5.0-ls180 #v6.5.0-ls179 #v6.3.0-ls177
+    image: linuxserver/calibre:v6.7.1-ls188 #v6.5.0-ls180 #v6.5.0-ls179 #v6.3.0-ls177
     environment:
       - PUID=1000
       - PGID=1000
@@ -135,24 +135,22 @@ services:
       - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
     restart: unless-stopped
 
-  homeassistant:
-    container_name: homeassistant_container
-    image: ghcr.io/home-assistant/home-assistant:latest
-    volumes:
-      - /home/depechie/homeassistant/config:/config
-      - /etc/localtime:/etc/localtime:ro
-    # network_mode: host
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.8
-    dns: 10.0.0.3
-    ports:
-      - 8124:8123      
-    labels:
-      - 'wud.tag.include=latest'
-      - 'wud.watch.digest=true'      
-    restart: unless-stopped
-    # privileged: true
+  # homeassistant:
+  #   container_name: homeassistant_container
+  #   image: ghcr.io/home-assistant/home-assistant:latest
+  #   volumes:
+  #     - /home/depechie/homeassistant/config:/config
+  #     - /etc/localtime:/etc/localtime:ro
+  #   networks:
+  #     backbone:
+  #       ipv4_address: 10.0.0.8
+  #   dns: 10.0.0.3
+  #   ports:
+  #     - 8124:8123      
+  #   labels:
+  #     - 'wud.tag.include=latest'
+  #     - 'wud.watch.digest=true'      
+  #   restart: unless-stopped
     
 networks:
   backbone:
