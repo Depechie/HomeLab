@@ -46,6 +46,8 @@ services:
       - pihole      
     container_name: calibre
     image: linuxserver/calibre:v6.7.1-ls188 #v6.5.0-ls180 #v6.5.0-ls179 #v6.3.0-ls177
+    security_opt:
+      - seccomp:unconfined
     environment:
       - PUID=1000
       - PGID=1000
