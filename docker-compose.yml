@@ -157,6 +157,26 @@ services:
   #     - 'wud.tag.include=latest'
   #     - 'wud.watch.digest=true'      
   #   restart: unless-stopped
+
+  daapd:
+    depends_on:
+      - pihole  
+    image: lscr.io/linuxserver/daapd:latest
+    container_name: daapd
+    networks:
+      backbone:
+        ipv4_address: 10.0.0.9
+    dns: 10.0.0.3
+    ports:
+      - 3689:3689
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Brussels
+    volumes:
+      - /home/depechie/daapd/config:/config
+      - /home/depechie/daapd/music:/music
+    restart: unless-stopped  
     
 networks:
   backbone:
