@@ -163,12 +163,7 @@ services:
       - pihole  
     image: lscr.io/linuxserver/daapd:latest
     container_name: daapd
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.9
-    dns: 10.0.0.3
-    ports:
-      - 3689:3689
+    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
