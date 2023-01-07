@@ -141,20 +141,20 @@ services:
       - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
     restart: unless-stopped
 
-  traggo:
-    depends_on:
-      - pihole  
-    image: traggo/server:latest
-    container_name: traggo
-    volumes:
-      - /home/traggo:/opt/traggo/data
-    networks:
-      backbone:
-        ipv4_address: 10.0.0.8
-    dns: 10.0.0.3      
-    ports:
-      - 3030:3030
-    restart: unless-stopped
+  # traggo:
+  #   depends_on:
+  #     - pihole  
+  #   image: traggo/server:latest
+  #   container_name: traggo
+  #   volumes:
+  #     - /home/traggo:/opt/traggo/data
+  #   networks:
+  #     backbone:
+  #       ipv4_address: 10.0.0.8
+  #   dns: 10.0.0.3      
+  #   ports:
+  #     - 3030:3030
+  #   restart: unless-stopped
 
   # homeassistant:
   #   container_name: homeassistant_container
