@@ -69,6 +69,11 @@ var bottomLeft = new Key('a', MOD, () => {
     Window.focused().setFrame(windowLocations.bottomLeft);
 });
 
+var centerHalf = new Key('e', MOD, () => {
+    if (VERBOSE) { movementModal('center half'); }
+    Window.focused().setFrame(windowLocations.centerHalf);
+});
+
 // Maximize window (not fullscreen)
 var maximizeWindow = new Key('m', MOD, () => {
     if (VERBOSE) { movementModal('Maximizing', true); }
