@@ -4,19 +4,21 @@ let VERBOSE = false;
 const HALF_CORRECTION = 6; // Fix padding issues for half screen windows
 
 var scr = Screen.main().flippedVisibleFrame();
+
 // Padding Values
 var paddingTop = 28;
 var paddingLeft = 8;
-var paddingRight = 15;
-var paddingBottom = 10;
-var paddingCenter = 8;
+var paddingRight = 12;
+var paddingBottom = 8;
+var paddingCenter = 4;
 var paddingMiddle = 15;
 
 // Computed sizes
 var halfWidth = ((scr.width - paddingLeft) - paddingRight) / 2;
 var halfHeight = (((scr.height - paddingTop) - paddingBottom) / 2) + HALF_CORRECTION;
-
 var thirdWidth = ((scr.width - paddingLeft) - paddingRight) / 3;
+
+var halfWidthNoPadding = scr.width / 2;
 
 var windowLocations = {
     full: {
@@ -85,6 +87,12 @@ var windowLocations = {
         y: paddingTop,
         x: ((thirdWidth * 2) + paddingLeft) + paddingCenter,
         width: thirdWidth,
+        height: scr.height - paddingBottom
+    },
+    centerHalf: {
+        y: paddingTop,
+        x: thirdWidth / 2,
+        width: thirdWidth * 2,
         height: scr.height - paddingBottom
     }
 }
