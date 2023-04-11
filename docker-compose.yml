@@ -31,7 +31,7 @@ services:
     depends_on:
       - pihole
     container_name: wud
-    image: fmartinou/whats-up-docker:6.0.0
+    image: fmartinou/whats-up-docker:6.2.0
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
